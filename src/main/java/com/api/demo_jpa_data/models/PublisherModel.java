@@ -3,6 +3,7 @@ package com.api.demo_jpa_data.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,11 +13,12 @@ import java.util.UUID;
 @Table(name = "TB_PUBLISHER")
 public class PublisherModel implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Long id;
 
     @Column(nullable = false, unique = true)
     private String name;
@@ -26,11 +28,11 @@ public class PublisherModel implements Serializable {
     @OneToMany(mappedBy = "publisher", fetch = FetchType.LAZY)    // indica que a propriedade está configurando o carregamento preguiçoso para evitar buscar dados relacionados desnecessariamente, melhorando o desempenho da minha aplicação.
     private Set<BookModel> bookModels = new HashSet<>();
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

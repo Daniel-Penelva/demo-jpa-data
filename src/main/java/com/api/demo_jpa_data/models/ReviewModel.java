@@ -14,7 +14,7 @@ public class ReviewModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Long id;
 
     @Column(nullable = false)
     private String comment;
@@ -25,11 +25,11 @@ public class ReviewModel implements Serializable {
     @JoinColumn(name = "book_id")
     private BookModel book;
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

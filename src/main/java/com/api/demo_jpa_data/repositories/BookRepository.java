@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface BookRepository extends JpaRepository<BookModel, UUID> {
+public interface BookRepository extends JpaRepository<BookModel, Long> {
 
     BookModel findBookModelByTitle(String title);
 
     @Query(value = "SELECT * FROM tb_book WHERE publisher_id = :id", nativeQuery = true)
-    List<BookModel> findBooksByPublisherId(@Param("id") UUID id);
+    List<BookModel> findBooksByPublisherId(@Param("id") Long id);
 }

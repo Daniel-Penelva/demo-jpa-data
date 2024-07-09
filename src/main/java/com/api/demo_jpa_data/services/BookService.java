@@ -47,7 +47,7 @@ public class BookService {
     }
 
     @Transactional
-    public void deleteBook(UUID id) {
+    public void deleteBook(Long id) {
         bookRepository.deleteById(id);
     }
 }

@@ -1,5 +1,6 @@
 package com.api.demo_jpa_data.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -22,14 +23,14 @@ public class BookModel implements Serializable {
     private String title;
 
     // Vários livros são publicado por uma editora
-    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToOne//(fetch = FetchType.LAZY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne(fetch = FetchType.LAZY)   // testar busca pregruiçosa - Não vai buscar publisher e nem o author, somente o book e o review
     @JoinColumn(name = "publisher_id")
     private PublisherModel publisher;
 
     // Vários livros têm vários autores
-    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)  // remover junto com FetchType.LAZY
-    @ManyToMany//(fetch = FetchType.LAZY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)  // testar busca pregruiçosa - Não vai buscar publisher e nem o author, somente o book e o review
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "tb_book_author",
             joinColumns = @JoinColumn(name = "book_id"),

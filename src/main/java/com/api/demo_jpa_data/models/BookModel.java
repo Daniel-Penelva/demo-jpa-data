@@ -6,7 +6,6 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name = "TB_BOOK")
@@ -39,7 +38,7 @@ public class BookModel implements Serializable {
     private Set<AuthorModel> authors = new HashSet<>();
 
     // Um livro tem um resumo
-    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL) // Vai deletar em cascata o livro (book) e o review (resumo)
     private ReviewModel review;
 
     public Long getId() {
